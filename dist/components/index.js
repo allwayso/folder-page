@@ -429,14 +429,18 @@ var PageList = ({
           locale: cfg?.locale ?? "en-US"
         }
       ) }),
-      /* @__PURE__ */ u2("div", { class: "desc", children: /* @__PURE__ */ u2("h3", { children: /* @__PURE__ */ u2(
-        "a",
-        {
-          href: resolveRelative(fileSlug ?? "", page.slug),
-          class: "internal",
-          children: title
-        }
-      ) }) }),
+      /* @__PURE__ */ u2("div", { class: "desc", children: [
+        /* @__PURE__ */ u2("h3", { children: /* @__PURE__ */ u2(
+          "a",
+          {
+            href: resolveRelative(fileSlug ?? "", page.slug),
+            class: "internal",
+            ...page.frontmatter?.target ? { target: "_blank", rel: "noopener noreferrer" } : {},
+            children: title
+          }
+        ) }),
+        page.frontmatter?.target && /* @__PURE__ */ u2("p", { class: "target", children: page.frontmatter?.target })
+      ] }),
       /* @__PURE__ */ u2("ul", { class: "tags", children: tags.map((tag) => /* @__PURE__ */ u2("li", { children: /* @__PURE__ */ u2(
         "a",
         {

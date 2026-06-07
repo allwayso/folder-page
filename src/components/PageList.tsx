@@ -85,10 +85,14 @@ export const PageList: QuartzComponent = ({
                   <a
                     href={resolveRelative(fileSlug ?? ("" as FullSlug), page.slug as FullSlug)}
                     class="internal"
+                    {...((page.frontmatter?.target)
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                   >
                     {title}
                   </a>
                 </h3>
+                {page.frontmatter?.target && <p class="target">{page.frontmatter?.target as string}</p>}
               </div>
               <ul class="tags">
                 {tags.map((tag) => (
